@@ -1,3 +1,4 @@
+import { keywords } from './keywords'
 import { rx } from './regex'
 import { resolveUnit } from './units'
 
@@ -28,6 +29,9 @@ export const parse: (input: string) => number | undefined = input => {
 
     return resolved
   }
+
+  const kw = keywords.find(x => x.token === str)
+  if (kw !== undefined) return kw.value
 
   return undefined
 }
