@@ -1,6 +1,6 @@
 {
   "name": "@lolpants/timeparser",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Parse complex length strings to a millisecond value",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
