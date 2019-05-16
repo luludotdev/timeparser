@@ -1,10 +1,11 @@
 import { keywords } from './keywords'
-import { rx } from './regex'
+import { resolveNumeral } from './numerals'
+import { rx, splitRX } from './regex'
 import { resolveUnit } from './units'
 
 const parseToken = (str: string) => {
-  const [, len, u] = str.split(/(\d+)/g).map(x => x.trim())
-  const length = parseInt(len, 10)
+  const [, len, u] = str.split(splitRX).map(x => x.trim())
+  const length = resolveNumeral(len)
 
   const unit = resolveUnit(u)
   if (unit === undefined) return 0

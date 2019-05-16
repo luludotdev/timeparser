@@ -1,3 +1,4 @@
+import { numerals } from './numerals'
 import { units } from './units'
 
 const shortTokens = [...units]
@@ -11,7 +12,14 @@ const longTokens = [...units]
   .map(x => x.token)
   .join('|')
 
+const numeralTokens = [...numerals]
+  .sort((a, b) => b.token.length - a.token.length)
+  .map(x => x.token)
+  .join('|')
+
 export const rx = new RegExp(
-  `(?:(\\d+) ?(${longTokens})s?|(\\d+)(${shortTokens}))`,
+  `(?:(\\d+|${numeralTokens}) ?(${longTokens})s?|(\\d+)(${shortTokens}))`,
   'g'
 )
+
+export const splitRX = new RegExp(`(\\d+|${numeralTokens})`, 'g')
