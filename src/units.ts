@@ -6,49 +6,31 @@ export const WEEK = DAY * 7
 export const MONTH = DAY * 31
 export const YEAR = DAY * 365
 
+interface IUnit {
+  token: string
+  short?: string
+  value: number
+}
+
+export const units: IUnit[] = [
+  { token: 'second', short: 's', value: SECOND },
+  { token: 'minute', short: 'm', value: MINUTE },
+  { token: 'hour', short: 'h', value: HOUR },
+  { token: 'day', short: 'd', value: DAY },
+  { token: 'week', short: 'w', value: WEEK },
+  { token: 'fortnight', value: WEEK * 2 },
+  { token: 'month', short: 'mo', value: MONTH },
+  { token: 'year', short: 'y', value: YEAR },
+].map(({ token, short, value }) => ({
+  short: (short && short.toLowerCase()) || undefined,
+  token: token.toLowerCase(),
+  value,
+}))
+
 export const resolveUnit = (str: string) => {
-  switch (str) {
-    case 's':
-    case 'second':
-    case 'seconds':
-      return SECOND
-    case 'm':
-    case 'minute':
-    case 'minutes':
-      return MINUTE
-    case 'h':
-    case 'hour':
-    case 'hours':
-      return HOUR
-    case 'd':
-    case 'day':
-    case 'days':
-      return DAY
-    case 'w':
-    case 'week':
-    case 'weeks':
-      return WEEK
-    case 'mo':
-    case 'month':
-    case 'months':
-      return MONTH
-    case 'y':
-    case 'year':
-    case 'years':
-      return YEAR
-    default:
-      return undefined
-  }
-}
+  const input = str.trim().toLowerCase()
 
-const UNITS = {
-  DAY,
-  HOUR,
-  MINUTE,
-  MONTH,
-  SECOND,
-  WEEK,
-  YEAR,
+  return units.find(
+    x => x.token === input || x.short === input || `${x.token}s` === input
+  )
 }
-
-export default UNITS

@@ -1,3 +1,4 @@
+import { rx } from './regex'
 import { resolveUnit } from './units'
 
 const parseToken = (str: string) => {
@@ -6,13 +7,12 @@ const parseToken = (str: string) => {
 
   const unit = resolveUnit(u)
   if (unit === undefined) return undefined
-  else return length * unit
+  else return length * unit.value
 }
 
 export const parse: (input: string) => number | undefined = input => {
   const str = input.toLowerCase().trim()
 
-  const rx = /(?:(\d+) ?(second|minute|hour|day|week|month|year)s?|(\d+)(mo|s|m|h|d|w|y))/g
   const matches = str.match(rx)
   if (matches !== null) {
     const resolved = matches.reduce(
