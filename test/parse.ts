@@ -99,4 +99,14 @@ test('parses keywords', t => {
   t.is(parse('tomorrow'), DAY * 1)
 })
 
-test.todo('fails on invalid input')
+test('fails on invalid input', t => {
+  t.is(parse('invalid input'), undefined)
+  t.is(parse('1 minuet'), undefined)
+  t.is(parse('tomorrwo'), undefined)
+  t.is(parse(''), undefined)
+
+  // @ts-ignore
+  t.is(parse(), undefined)
+  // @ts-ignore
+  t.is(parse(10), undefined)
+})
