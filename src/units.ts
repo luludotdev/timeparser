@@ -27,10 +27,13 @@ export const units: IUnit[] = [
   value,
 }))
 
-export const resolveUnit = (str: string) => {
+export const resolveUnit: (str: string) => number = str => {
   const input = str.trim().toLowerCase()
 
-  return units.find(
+  const unit = units.find(
     x => x.token === input || x.short === input || `${x.token}s` === input
   )
+
+  if (unit !== undefined) return unit.value
+  else return 0
 }

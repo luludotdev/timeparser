@@ -8,8 +8,7 @@ const parseToken = (str: string) => {
   const length = resolveNumeral(len)
 
   const unit = resolveUnit(u)
-  if (unit === undefined) return 0
-  else return length * unit.value
+  return length * unit
 }
 
 export const parse: (input: string) => number | undefined = input => {
