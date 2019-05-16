@@ -1,7 +1,7 @@
 import { resolveUnit } from './units'
 
-const simpleParse = (str: string) => {
-  const [, len, u] = str.split(/(\d+)/g)
+const parseToken = (str: string) => {
+  const [, len, u] = str.split(/(\d+)/g).map(x => x.trim())
   const length = parseInt(len, 10)
 
   const unit = resolveUnit(u)
@@ -12,14 +12,14 @@ const simpleParse = (str: string) => {
 export const parse: (input: string) => number | undefined = input => {
   const str = input.toLowerCase().trim()
 
-  const simpleRX = /(\d+)(mo|s|m|h|d|w|y)/g
-  const simpleMatches = str.match(simpleRX)
-  if (simpleMatches !== null) {
-    const resolved = simpleMatches.reduce(
+  const rx = /(?:(\d+) ?(second|minute|hour|day|week|month|year)s?|(\d+)(mo|s|m|h|d|w|y))/g
+  const matches = str.match(rx)
+  if (matches !== null) {
+    const resolved = matches.reduce(
       (acc, curr) => {
         if (acc === undefined) return undefined
 
-        const value = simpleParse(curr)
+        const value = parseToken(curr)
         if (value === undefined) return undefined
         else return acc + value
       },
