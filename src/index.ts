@@ -7,7 +7,7 @@ const parseToken = (str: string) => {
   const length = parseInt(len, 10)
 
   const unit = resolveUnit(u)
-  if (unit === undefined) return undefined
+  if (unit === undefined) return 0
   else return length * unit.value
 }
 
@@ -17,16 +17,10 @@ export const parse: (input: string) => number | undefined = input => {
 
   const matches = str.match(rx)
   if (matches !== null) {
-    const resolved = matches.reduce(
-      (acc, curr) => {
-        if (acc === undefined) return undefined
-
-        const value = parseToken(curr)
-        if (value === undefined) return undefined
-        else return acc + value
-      },
-      0 as number | undefined
-    )
+    const resolved = matches.reduce((acc, curr) => {
+      const value = parseToken(curr)
+      return acc + value
+    }, 0)
 
     return resolved
   }
