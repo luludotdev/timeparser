@@ -102,6 +102,7 @@ test('parses keywords', t => {
 test('fails on invalid input', t => {
   t.is(parse('invalid input'), undefined)
   t.is(parse('1 minuet'), undefined)
+  t.is(parse('2z'), undefined)
   t.is(parse('tomorrwo'), undefined)
   t.is(parse(''), undefined)
 
