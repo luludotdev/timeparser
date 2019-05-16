@@ -28,6 +28,7 @@ export const units: IUnit[] = [
 }))
 
 export const resolveUnit: (str: string) => number = str => {
+  if (typeof str !== 'string') return 0
   const input = str.trim().toLowerCase()
 
   const unit = units.find(

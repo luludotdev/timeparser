@@ -17,10 +17,13 @@ export const numerals: INumeral[] = [
 ]
 
 export const resolveNumeral: (str: string) => number = str => {
-  const value = parseInt(str, 10)
+  if (typeof str !== 'string') return 0
+  const input = str.trim().toLowerCase()
+
+  const value = parseInt(input, 10)
   if (!Number.isNaN(value)) return value
 
-  const numeral = numerals.find(x => x.token === str)
+  const numeral = numerals.find(x => x.token === input)
   if (numeral !== undefined) return numeral.value
 
   return 0
