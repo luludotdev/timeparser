@@ -87,7 +87,14 @@ test('parses complex long form', t => {
   t.is(parse('1 minute 50 seconds'), MINUTE + 50 * SECOND)
 
   t.is(parse('3 hours 2 minutes'), HOUR * 3 + MINUTE * 2)
-  t.is(parse('3 hours 2 minutes'), HOUR * 3 + MINUTE * 2)
+  t.is(parse('3 hours and 2 minutes'), HOUR * 3 + MINUTE * 2)
+})
+
+test('parses long form with written numerals', t => {
+  t.is(parse('one minute 50 seconds'), MINUTE + 50 * SECOND)
+
+  t.is(parse('three hours 2 minutes'), HOUR * 3 + MINUTE * 2)
+  t.is(parse('3 hours and two minutes'), HOUR * 3 + MINUTE * 2)
 })
 
 test('parses a mix of simple and complex', t => {
