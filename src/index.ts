@@ -12,6 +12,7 @@ const parseToken = (str: string) => {
 }
 
 export const parse: (input: string) => number | undefined = input => {
+  if (typeof input !== 'string') return undefined
   const str = input.toLowerCase().trim()
 
   const matches = str.match(rx)
