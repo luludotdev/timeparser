@@ -5,7 +5,7 @@
 [![Dependencies](https://img.shields.io/david/lolpants/timeparser.svg?maxAge=3600)](https://david-dm.org/lolpants/timeparser)
 [![Coverage Status](https://coveralls.io/repos/github/lolPants/timeparser/badge.svg?branch=master)](https://coveralls.io/github/lolPants/timeparser?branch=master)
 
-_Parse complex length strings to a millisecond value_
+_Parse complex length strings to a millisecond value_  
 Written in TypeScript, compiled down to ES5 for use in any Node.js version!
 
 ## 💾 Installation
