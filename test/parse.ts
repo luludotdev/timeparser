@@ -39,7 +39,14 @@ test('parses simple short form', t => {
   t.is(parse('5y'), YEAR * 5)
 })
 
-test.todo('parses complex short form')
-test.todo('parses long form')
+test('parses complex short form', t => {
+  t.is(parse('1m50s'), MINUTE + 50 * SECOND)
+
+  t.is(parse('3h2m'), HOUR * 3 + MINUTE * 2)
+  t.is(parse('3h 2m'), HOUR * 3 + MINUTE * 2)
+})
+
+test.todo('parses simple long form')
+test.todo('parses complex long form')
 test.todo('parses keywords')
 test.todo('fails on invalid input')
