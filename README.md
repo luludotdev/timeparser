@@ -24,4 +24,4 @@ const len = parse('1 minute')
 // => 60000
 ```
 
-Check `/tests/parser.ts` for examples of parsable strings.
+Check `/test/parser.ts` for examples of parsable strings.
