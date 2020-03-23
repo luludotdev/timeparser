@@ -44,7 +44,6 @@
     "typescript": "^3.8.3"
   },
   "ava": {
-    "compileEnhancements": false,
     "files": [
       "test/**/*.ts",
       "!test/helpers.ts"
