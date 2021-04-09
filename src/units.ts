@@ -22,19 +22,18 @@ export const units: IUnit[] = [
   { token: 'month', short: 'mo', value: MONTH },
   { token: 'year', short: 'y', value: YEAR },
 ].map(({ token, short, value }) => ({
-  short: (short && short.toLowerCase()) || undefined,
+  short: short?.toLowerCase(),
   token: token.toLowerCase(),
   value,
 }))
 
-export const resolveUnit: (str: string) => number = str => {
-  if (typeof str !== 'string') return 0
-  const input = str.trim().toLowerCase()
+export const resolveUnit: (string: string) => number = string => {
+  if (typeof string !== 'string') return 0
+  const input = string.trim().toLowerCase()
 
   const unit = units.find(
     x => x.token === input || x.short === input || `${x.token}s` === input
   )
 
-  if (unit !== undefined) return unit.value
-  else return 0
+  return unit !== undefined ? unit.value : 0
 }

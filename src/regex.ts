@@ -1,8 +1,8 @@
-import { numerals } from './numerals'
-import { units } from './units'
+import { numerals } from './numerals.js'
+import { units } from './units.js'
 
 const shortTokens = [...units]
-  .sort((a, b) => (b.short || '').length - (a.short || '').length)
+  .sort((a, b) => (b.short ?? '').length - (a.short ?? '').length)
   .map(x => x.short)
   .filter(x => x !== undefined)
   .join('|')

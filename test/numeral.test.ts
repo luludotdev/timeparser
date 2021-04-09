@@ -1,5 +1,5 @@
 import test from 'ava'
-import { resolveNumeral } from '../src/numerals'
+import { resolveNumeral } from '../src/numerals.js'
 
 test('resolves valid values', t => {
   t.is(resolveNumeral('one'), 1)
@@ -17,8 +17,8 @@ test('resolves valid values', t => {
 test('does not resolve invalid values', t => {
   t.is(resolveNumeral('number'), 0)
 
-  // @ts-ignore
+  // @ts-expect-error
   t.is(resolveNumeral(), 0)
-  // @ts-ignore
+  // @ts-expect-error
   t.is(resolveNumeral(7), 0)
 })

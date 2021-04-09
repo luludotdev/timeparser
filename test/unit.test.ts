@@ -8,7 +8,7 @@ import {
   SECOND,
   WEEK,
   YEAR,
-} from '../src/units'
+} from '../src/units.js'
 
 test('resolves valid values', t => {
   t.is(resolveUnit('second'), SECOND)
@@ -24,8 +24,8 @@ test('resolves valid values', t => {
 test('does not resolve invalid values', t => {
   t.is(resolveUnit('unit'), 0)
 
-  // @ts-ignore
+  // @ts-expect-error
   t.is(resolveUnit(), 0)
-  // @ts-ignore
+  // @ts-expect-error
   t.is(resolveUnit(7), 0)
 })

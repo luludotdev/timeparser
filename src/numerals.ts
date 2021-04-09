@@ -16,11 +16,11 @@ export const numerals: INumeral[] = [
   { token: 'ten', value: 10 },
 ]
 
-export const resolveNumeral: (str: string) => number = str => {
-  if (typeof str !== 'string') return 0
-  const input = str.trim().toLowerCase()
+export const resolveNumeral: (string: string) => number = string => {
+  if (typeof string !== 'string') return 0
+  const input = string.trim().toLowerCase()
 
-  const value = parseInt(input, 10)
+  const value = Number.parseInt(input, 10)
   if (!Number.isNaN(value)) return value
 
   const numeral = numerals.find(x => x.token === input)

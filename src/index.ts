@@ -1,11 +1,11 @@
-import { keywords } from './keywords'
-import { resolveNumeral } from './numerals'
-import { rx, splitRX } from './regex'
-import { resolveUnit } from './units'
+import { keywords } from './keywords.js'
+import { resolveNumeral } from './numerals.js'
+import { rx, splitRX } from './regex.js'
+import { resolveUnit } from './units.js'
 
-const parseToken = (str: string) => {
-  const [, len, u] = str.split(splitRX).map(x => x.trim())
-  const length = resolveNumeral(len)
+const parseToken = (string: string) => {
+  const [, length_, u] = string.split(splitRX).map(x => x.trim())
+  const length = resolveNumeral(length_)
 
   const unit = resolveUnit(u)
   return length * unit
@@ -13,10 +13,12 @@ const parseToken = (str: string) => {
 
 export const parse: (input: string) => number | undefined = input => {
   if (typeof input !== 'string') return undefined
-  const str = input.toLowerCase().trim()
+  const string = input.toLowerCase().trim()
 
-  const matches = str.match(rx)
+  // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
+  const matches = string.match(rx)
   if (matches !== null) {
+    // eslint-disable-next-line unicorn/no-array-reduce
     const resolved = matches.reduce((acc, curr) => {
       const value = parseToken(curr)
       return acc + value
@@ -25,7 +27,7 @@ export const parse: (input: string) => number | undefined = input => {
     return resolved
   }
 
-  const kw = keywords.find(x => x.token === str)
+  const kw = keywords.find(x => x.token === string)
   if (kw !== undefined) return kw.value
 
   return undefined

@@ -2,62 +2,53 @@
   "name": "@lolpants/timeparser",
   "version": "1.0.2",
   "description": "Parse complex length strings to a millisecond value",
-  "main": "./lib/index.js",
-  "module": "./esm/index.js",
+  "type": "module",
+  "exports": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "sideEffects": false,
   "files": [
-    "lib/**/*",
-    "esm/**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "prepublishOnly": "yarn run test && yarn run build",
     "test": "yarn run check && yarn run lint && yarn run ava",
-    "ava": "nyc --reporter=html --reporter=text ava",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "check": "yarn run compile --noEmit",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "prebuild": "rimraf lib esm",
-    "build:cjs": "ncc build ./src/index.ts -o lib -m",
-    "build:esm": "yarn run compile --module ES6 --outDir esm",
-    "build": "yarn run build:cjs && yarn run build:esm",
+    "lint": "xo",
+    "clean": "rimraf lib",
+    "prebuild": "yarn run clean",
+    "build": "yarn run compile",
     "compile": "tsc",
     "watch": "yarn run compile --watch",
+    "predev": "yarn run clean",
     "dev": "yarn run watch  --sourceMap"
   },
   "repository": "git@github.com:lolPants/timeparser.git",
   "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
   "license": "ISC",
   "private": false,
+  "engines": {
+    "node": ">=12"
+  },
   "devDependencies": {
-    "@types/node": "^13.9.3",
-    "@zeit/ncc": "^0.21.1",
-    "ava": "^3.5.1",
-    "coveralls": "^3.0.11",
-    "nyc": "^15.0.0",
-    "prettier": "^2.0.1",
+    "@types/node": "^14.14.37",
+    "ava": "^3.15.0",
     "rimraf": "^3.0.2",
-    "ts-node": "^8.8.1",
-    "tslint": "^5.20.1",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.2.0",
-    "typescript": "^3.8.3"
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4",
+    "xo": "^0.38.2"
   },
   "ava": {
     "files": [
-      "test/**/*.ts",
-      "!test/helpers.ts"
+      "test/**/*.test.ts"
     ],
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "ts-node/register"
-    ]
-  },
-  "nyc": {
-    "extension": [
-      ".ts"
+    "extensions": {
+      "ts": "module"
+    },
+    "nonSemVerExperiments": {
+      "configurableModuleFormat": true
+    },
+    "nodeArguments": [
+      "--loader=ts-node/esm"
     ]
   }
 }

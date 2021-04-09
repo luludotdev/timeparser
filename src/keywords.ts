@@ -1,4 +1,4 @@
-import { DAY } from './units'
+import { DAY } from './units.js'
 
 interface IKeyword {
   token: string
