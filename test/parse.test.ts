@@ -113,8 +113,8 @@ test('fails on invalid input', t => {
   t.is(parse('tomorrwo'), undefined)
   t.is(parse(''), undefined)
 
-  // @ts-expect-error
+  // @ts-expect-error No Arguments
   t.is(parse(), undefined)
-  // @ts-expect-error
+  // @ts-expect-error Invalid Argument
   t.is(parse(10), undefined)
 })

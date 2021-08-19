@@ -24,8 +24,8 @@ test('resolves valid values', t => {
 test('does not resolve invalid values', t => {
   t.is(resolveUnit('unit'), 0)
 
-  // @ts-expect-error
+  // @ts-expect-error No Arguments
   t.is(resolveUnit(), 0)
-  // @ts-expect-error
+  // @ts-expect-error Invalid Argument
   t.is(resolveUnit(7), 0)
 })

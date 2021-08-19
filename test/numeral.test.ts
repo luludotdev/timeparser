@@ -17,8 +17,8 @@ test('resolves valid values', t => {
 test('does not resolve invalid values', t => {
   t.is(resolveNumeral('number'), 0)
 
-  // @ts-expect-error
+  // @ts-expect-error No Arguments
   t.is(resolveNumeral(), 0)
-  // @ts-expect-error
+  // @ts-expect-error Invalid Argument
   t.is(resolveNumeral(7), 0)
 })

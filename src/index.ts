@@ -18,7 +18,6 @@ export const parse: (input: string) => number | undefined = input => {
   // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
   const matches = string.match(rx)
   if (matches !== null) {
-    // eslint-disable-next-line unicorn/no-array-reduce
     const resolved = matches.reduce((acc, curr) => {
       const value = parseToken(curr)
       return acc + value
